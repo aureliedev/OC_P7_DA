@@ -23,24 +23,27 @@ h1.header-heading {
   text-align: center;
   color: #d04f4f;
 }
-
-#search-form {
+/***************************************************/
+/****************** SEARCH SECTION *****************/
+/***************************************************/
+#search-section {
   position: relative;
   width: 90%;
-  max-width: 1240px;
+  max-width: 1150px;
   margin: 0 auto;
 }
 
 #search-input {
-  display: block;
   width: 100%;
   height: 69px;
-  font-size: 18px;
+  display: block;
   margin: 0 auto;
-  padding-left: 15px;
+  padding-left: 25px;
   border: none;
   border-radius: 5px;
   background-color: #e7e7e7;
+  font-size: 18px;
+  font-family: "Lato", Arial, Helvetica, sans-serif;
 }
 
 #search-button {
@@ -63,7 +66,6 @@ h1.header-heading {
   color: #d04f4f;
 }
 
-/************* RECIPES ******************/
 #recipe-cards-container {
   margin: 25px auto;
   width: 90%;
@@ -79,91 +81,119 @@ h1.header-heading {
   #recipe-cards-container {
     width: 95%;
   }
+}
 
-  recipe-card {
-    width: 350px;
-    height: 350px;
-    background-color: #e7e7e7;
+/**************************************************/
+/*********************** RECIPES ******************/
+/**************************************************/
+#recipe-cards-container {
+  margin: 25px auto;
+  width: 90%;
+  max-width: 1150px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+@media screen and (max-width: 768px) {
+  #search-section,
+  #recipe-cards-container {
+    width: 95%;
   }
+}
 
-  .recipe-card-image-container {
-    height: 175px;
-    background-color: #c7bebe;
+.recipe-card {
+  width: 350px;
+  height: 350px;
+  background-color: #e7e7e7;
+  border-radius: 5px;
+  overflow: hidden;
+  font-family: "Lato", Arial, Helvetica, sans-serif;
+}
+
+.recipe-card:hover {
+  box-shadow: 3px 3px 5px 1px gray;
+}
+
+.recipe-card-image-container {
+  height: 175px;
+  background-color: #c7bebe;
+}
+
+.recipe-card-details {
+  height: 175px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+.recipe-card-name {
+  width: 70%;
+  height: 30%;
+  padding: 5px;
+}
+
+.recipe-card-time {
+  width: 30%;
+  height: 30%;
+  padding: 5px;
+  text-align: right;
+  font-weight: bold;
+}
+
+.recipe-card-description {
+  height: 70%;
+  width: 50%;
+  font-size: 10px;
+  overflow-y: scroll;
+  padding: 5px;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+}
+
+.recipe-card-ingredients-list {
+  list-style-type: none;
+  font-size: 10px;
+  width: 50%;
+  height: 70%;
+  overflow-y: scroll;
+  padding: 5px;
+}
+
+.recipe-card-ingredients-list::-webkit-scrollbar,
+.recipe-card-description::-webkit-scrollbar {
+  display: none;
+}
+
+.recipe-card-ingredients-list-item span {
+  font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+  .recipe-card {
+    height: auto;
   }
 
   .recipe-card-details {
-    height: 175px;
-    display: flex;
-    flex-wrap: wrap;
-    padding: 10px;
+    height: auto;
+    gap: 15px;
   }
 
   .recipe-card-name {
-    width: 70%;
-    height: 30%;
-    padding: 5px;
+    width: 100%;
+    text-align: center;
   }
 
   .recipe-card-time {
-    width: 30%;
-    height: 30%;
-    padding: 5px;
-    text-align: right;
-    font-weight: bold;
-  }
-
-  .recipe-card-description {
-    height: 70%;
-    width: 50%;
-    font-size: 10px;
-    overflow-y: scroll;
-    padding: 5px;
+    width: 100%;
+    text-align: center;
   }
 
   .recipe-card-ingredients-list {
-    list-style-type: none;
-    font-size: 10px;
-    width: 50%;
-    height: 70%;
-    overflow-y: scroll;
-    padding: 5px;
+    width: 100%;
   }
 
-  .recipe-card-ingredients-list::-webkit-scrollbar,
-  .recipe-card-description::-webkit-scrollbar {
-    display: none;
-  }
-
-  .recipe-card-ingredients-list-item span {
-    font-weight: bold;
-  }
-
-  @media screen and (max-width: 768px) {
-    .recipe-card {
-      height: auto;
-    }
-
-    .recipe-card-details {
-      height: auto;
-      gap: 15px;
-    }
-
-    .recipe-card-name {
-      width: 100%;
-      text-align: center;
-    }
-
-    .recipe-card-time {
-      width: 100%;
-      text-align: center;
-    }
-
-    .recipe-card-ingredients-list {
-      width: 100%;
-    }
-
-    .recipe-card-description {
-      width: 100%;
-    }
+  .recipe-card-description {
+    width: 100%;
   }
 }
