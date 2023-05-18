@@ -1,23 +1,29 @@
+// INDEX PAGE
+console.log("Array algo");
+
 const recipeCardsContainer = document.querySelector("#recipe-cards-container");
+const searchInput = document.querySelector("#search-input");
 
 let recipesList = [];
 
-async function fetchAllRecipes() {
+searchInput.addEventListener("input", filterRecipes);
+
+async function getAllRecipes() {
   const response = await fetch("../../assets/datas/recipes.json");
-  const recipes = await response.json();
-  return recipes;
-}
-
-async function displayRecipes() {
-  recipesList.forEach((recipe) => {
-    const recipeCard = recipeFactory(recipe).createRecipeCard();
-    recipeCardsContainer.appendChild(recipeCard);
-  });
-}
-
-async function init() {
-  recipesList = await fetchAllRecipes();
-  displayRecipes();
+  const results = await response.json();
+  recipesList = results;
+  createRecipesList(recipesList);
 }
 
 init();
+
+function init() {
+  getAllRecipes();
+}
+
+function createRecipesList(array) {
+  array.forEach((element) => {
+    const recipeCard = recipeFactory(element).createRecipeCard();
+    recipeCardsContainer.appendChild(recipeCard);
+  });
+}
