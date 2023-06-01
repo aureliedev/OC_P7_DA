@@ -46,24 +46,16 @@ h1.header-heading {
   font-family: "Lato", Arial, Helvetica, sans-serif;
 }
 
-#search-button {
+#search-icon {
   position: absolute;
+  display: block;
   right: 20px;
   top: 50%;
   transform: translateY(-50%);
   height: 32px;
   width: 32px;
   font-size: 32px;
-  cursor: pointer;
-  border: none;
-  background: none;
   color: #333;
-  transition: all 0.2s ease;
-}
-
-#search-button:hover {
-  transform: translateY(-50%) scale(1.1);
-  color: #d04f4f;
 }
 
 #recipe-cards-container {
@@ -74,6 +66,17 @@ h1.header-heading {
   justify-content: center;
   flex-wrap: wrap;
   gap: 50px;
+}
+
+#error-message-recipes {
+  display: none;
+  width: 90%;
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 25px;
+  text-align: center;
+  font-family: "DM Sans", Arial, Helvetica, sans-serif;
+  color: #d04f4f;
 }
 
 @media screen and (max-width: 768px) {

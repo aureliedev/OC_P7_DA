@@ -12,6 +12,10 @@ function filterRecipes(e) {
       getIngredients(recipe).toLowerCase().includes(searchedString)
     );
   });
+
+  errorMessageRecipes.style.display =
+    filteredRecipesList.length === 0 ? "block" : "none";
+
   createRecipesList(filteredRecipesList);
 }
 

@@ -3,6 +3,7 @@ console.log("Array algo");
 
 const recipeCardsContainer = document.querySelector("#recipe-cards-container");
 const searchInput = document.querySelector("#search-input");
+const errorMessageRecipes = document.querySelector("#error-message-recipes");
 
 let recipesList = [];
 
