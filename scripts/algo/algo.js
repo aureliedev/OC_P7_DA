@@ -9,7 +9,7 @@ function filterRecipes(e) {
     return (
       recipe.name.toLowerCase().includes(searchedString) ||
       recipe.description.toLowerCase().includes(searchedString) ||
-      getIngredients(recipe).toLowerCase().includes(searchedString)
+      getIngredientsFromRecipe(recipe).includes(searchedString)
     );
   });
 
@@ -17,9 +17,4 @@ function filterRecipes(e) {
     filteredRecipesList.length === 0 ? "block" : "none";
 
   createRecipesList(filteredRecipesList);
-}
-
-function getIngredients(recipe) {
-  const ingredients = recipe.ingredients.map((item) => item.ingredient);
-  return ingredients.toString();
 }
