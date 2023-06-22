@@ -1,3 +1,10 @@
+function createRecipesList(array) {
+  array.forEach((element) => {
+    const recipeCard = recipeFactory(element).createRecipeCard();
+    recipeCardsContainer.appendChild(recipeCard);
+  });
+}
+
 function getIngredientsFromRecipe(recipe) {
   const ingredients = recipe.ingredients.map((item) =>
     item.ingredient.toLowerCase()

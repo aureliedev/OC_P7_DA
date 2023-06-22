@@ -14,17 +14,11 @@ async function getAllRecipes() {
   const results = await response.json();
   recipesList = results;
   createRecipesList(recipesList);
+  currentSearch = results;
 }
 
 init();
 
 function init() {
   getAllRecipes();
-}
-
-function createRecipesList(array) {
-  array.forEach((element) => {
-    const recipeCard = recipeFactory(element).createRecipeCard();
-    recipeCardsContainer.appendChild(recipeCard);
-  });
 }
