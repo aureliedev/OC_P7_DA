@@ -26,7 +26,7 @@ function getAllIngredientsFromRecipesList(recipesList) {
   return sortedAllIngredientsOnce;
 }
 
-function getAppliancesFromRecipesList(recipesList) {
+function getAllAppliancesFromRecipesList(recipesList) {
   const allAppliances = [];
   recipesList.forEach((recipe) => {
     allAppliances.push(recipe.appliance);
@@ -67,4 +67,30 @@ function capitalize(string) {
   }
   const capitalizedString = capitalized.join("");
   return capitalizedString;
+}
+function displayListItems(listOfItemToDisplay, type) {
+  let container;
+  switch (type) {
+    case "ingredients":
+      container = document.querySelector(".ingredients-container");
+      break;
+    case "appliances":
+      container = document.querySelector(".appliances-container");
+      break;
+    case "ustensils":
+      container = document.querySelector(".ustensils-container");
+      break;
+  }
+  container.innerHTML = "";
+  if (listOfItemToDisplay.length === 0) {
+    container.innerHTML = `
+          <p>Aucun résultat</p>
+      `;
+  }
+  listOfItemToDisplay.forEach((item) => {
+    const spanItem = document.createElement("span");
+    spanItem.classList.add("list-item");
+    spanItem.textContent = item;
+    container.appendChild(spanItem);
+  });
 }

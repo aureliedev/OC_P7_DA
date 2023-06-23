@@ -59,7 +59,7 @@ h1.header-heading {
 }
 
 #recipe-cards-container {
-  margin: 25px auto;
+  margin: 10px auto;
   width: 90%;
   max-width: 1150px;
   display: flex;
@@ -198,5 +198,113 @@ h1.header-heading {
 
   .recipe-card-description {
     width: 100%;
+  }
+}
+
+/* ADVANCED SEARCH*/
+#advanced-search {
+  display: flex;
+  position: relative;
+  width: 90%;
+  max-width: 1150px;
+  margin: 20px auto;
+  gap: 20px;
+}
+
+.advanced-search-field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  color: white;
+  padding: 10px;
+  width: 150px;
+}
+
+.advanced-search-field.ingredients-field {
+  background-color: #3282f7;
+}
+
+.advanced-search-field.appliances-field {
+  background-color: #68d9a4;
+}
+
+.advanced-search-field.ustensils-field {
+  background-color: #ed6454;
+}
+
+.advanced-search-title {
+  height: 22px;
+}
+
+.advanced-search-field i {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+}
+
+.advanced-search-input {
+  background: transparent;
+  height: 22px;
+  color: white;
+  border: none;
+  width: 80%;
+  padding: 5px;
+}
+
+.advanced-search-input:focus {
+  outline: none;
+}
+
+.advanced-search-input::placeholder {
+  color: white;
+  opacity: 0.5;
+}
+
+.advanced-search-tags-container {
+  position: absolute;
+  left: 0px;
+  top: 35px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: auto;
+  background-color: inherit;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.field-closed {
+  display: none;
+}
+
+.chevron.field-opened {
+  transform: rotate(180deg);
+}
+
+.item {
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.item:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 768px) {
+  #advanced-search {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .advanced-search-field {
+    width: 80%;
+  }
+
+  .advanced-search-tags-container {
+    position: relative;
+    top: 0px;
   }
 }

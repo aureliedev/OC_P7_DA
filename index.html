@@ -26,17 +26,39 @@
     <main>
         <!--SEARCH FORM-->
         <form id="search-section">
-            <input id="search-input" type="text" placeholder="Rechercher une recette">
+            <input id="search-input" type="text" placeholder="Rechercher une recette" data-input="search">
             <i id="search-icon" class="fa-solid fa-magnifying-glass"></i>
         </form>
         <!--TAGS CONTAINER-->
-        <section id="tags-container">
-            <!--TAGS HERE-->
+        <section id="tags-container"> </section>
+        <!--ADVANCED SEARCH-->
+        <section id="advanced-search">
+            <div class="advanced-search-field ingredients-field" data-type="ingredients">
+                <span class="advanced-search-title">Ingredients</span><i class="chevron fa-solid fa-chevron-down"></i>
+                <input class="advanced-search-input field-closed" type="text" placeholder="Rechercher"
+                    data-input="ingredients">
+                <div class="advanced-search-tags-container ingredients-container field-closed"
+                    data-container="ingredients"></div>
+            </div>
+
+            <div class="advanced-search-field appliances-field" data-type="appliances">
+                <span class="advanced-search-title">Appareils</span><i class="chevron fa-solid fa-chevron-down"></i>
+                <input class="advanced-search-input field-closed" type="text" placeholder="Rechercher"
+                    data-input="appliances">
+                <div class="advanced-search-tags-container appliances-container field-closed"
+                    data-container="appliances"></div>
+            </div>
+
+            <div class="advanced-search-field ustensils-field" data-type="ustensils">
+                <span class="advanced-search-title">Ustensils</span><i class="chevron fa-solid fa-chevron-down"></i>
+                <input class="advanced-search-input field-closed" type="text" placeholder="Rechercher"
+                    data-input="ustensils">
+                <div class="advanced-search-tags-container ustensils-container field-closed" data-container="ustensils">
+                </div>
+            </div>
         </section>
         <!--RECIPES CARDS CONTAINER-->
-        <section id="recipe-cards-container">
-            <!--RECIPES CARDS HERE-->
-        </section>
+        <section id="recipe-cards-container"> </section>
         <p id="error-message-recipes">Pas de recette trouvé !</p>
     </main>
     <!--SCRIPT-->
