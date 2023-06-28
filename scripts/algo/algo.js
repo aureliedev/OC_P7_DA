@@ -105,3 +105,38 @@ function addTag(e) {
   displayListItems(filteredList, type);
   console.log(listOfItemsToFilter, "listOfItemsToFilter");
 }
+
+function deleteTag(e) {
+  const type = e.target.parentNode.parentNode.getAttribute("data-type");
+  const content = e.target.parentNode.parentNode.textContent;
+  const newTagsList = tagsList.filter(
+    (tag) => tag.content.toLowerCase() != content.toLowerCase()
+  );
+
+  tagsList = newTagsList;
+  displayTags(tagsList);
+
+  switch (type) {
+    case "ingredients":
+      currentIngredientsList.push(content);
+      const currentIngredientsListSorted = currentIngredientsList.sort((a, b) =>
+        a.localeCompare(b)
+      );
+      displayListItems(currentIngredientsListSorted, "ingredients");
+      break;
+    case "appliances":
+      currentAppliancesList.push(content);
+      const currentAppliancesListSorted = currentAppliancesList.sort((a, b) =>
+        a.localeCompare(b)
+      );
+      displayListItems(currentAppliancesListSorted, "appliances");
+      break;
+    case "ustensils":
+      currentUstensilsList.push(content);
+      const currentUstensilsListSorted = currentUstensilsList.sort((a, b) =>
+        a.localeCompare(b)
+      );
+      displayListItems(currentUstensilsList, "ustensils");
+      break;
+  }
+}

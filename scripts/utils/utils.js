@@ -98,10 +98,10 @@ function displayListItems(listOfItemToDisplay, type) {
 }
 
 function displayTags(list) {
+  tagsContainer.innerHTML = "";
   if (list.length === 0) {
     return;
   }
-  tagsContainer.innerHTML = "";
   list.forEach((item) => {
     let tag = tagFactory(item.content, item.type).createTag();
     tagsContainer.appendChild(tag);
