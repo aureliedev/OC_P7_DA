@@ -1,7 +1,5 @@
 // INDEX PAGE
 
-let currentSearch = [];
-
 const recipeCardsContainer = document.querySelector("#recipe-cards-container");
 const searchInput = document.querySelector("#search-input");
 const errorMessageRecipes = document.querySelector("#error-message-recipes");
@@ -12,8 +10,8 @@ const ustensilsContainer = document.querySelector(".ustensils-container");
 const advancedSearchFields = document.querySelectorAll(
   ".advanced-search-field"
 );
-
-let recipesList = [];
+const tagsContainer = document.getElementById("tags-container");
+const tags = document.querySelectorAll(".tag");
 
 searchInput.addEventListener("input", filterList);
 
@@ -30,19 +28,27 @@ init();
 
 async function init() {
   getAllRecipes();
-  displayAllTags();
+  displayAllListItems();
 }
 
-async function displayAllTags() {
-  const recipes = await getAllRecipes();
-  displayListItems(getAllIngredientsFromRecipesList(recipes), "ingredients");
-  displayListItems(getAllAppliancesFromRecipesList(recipes), "appliances");
-  displayListItems(getAllUstensilsFromRecipesList(recipes), "ustensils");
+async function displayAllListItems() {
+  currentSearch = await getAllRecipes();
+  displayListItems(
+    getAllIngredientsFromRecipesList(currentSearch),
+    "ingredients"
+  );
+  currentIngredientsList = getAllIngredientsFromRecipesList(currentSearch);
+  displayListItems(
+    getAllAppliancesFromRecipesList(currentSearch),
+    "appliances"
+  );
+  currentAppliancesList = getAllAppliancesFromRecipesList(currentSearch);
+  displayListItems(getAllUstensilsFromRecipesList(currentSearch), "ustensils");
+  currentUstensilsList = getAllUstensilsFromRecipesList(currentSearch);
 }
 
 advancedSearchFields.forEach((field) => {
   const type = field.getAttribute("data-type");
-
   const chevron = field.querySelector(".chevron");
   const container = field.querySelector(".advanced-search-tags-container");
   const title = field.querySelector(".advanced-search-title");
@@ -60,3 +66,5 @@ advancedSearchFields.forEach((field) => {
 
   input.addEventListener("input", filterList);
 });
+
+displayTags(tagsList);

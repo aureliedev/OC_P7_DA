@@ -91,6 +91,19 @@ function displayListItems(listOfItemToDisplay, type) {
     const spanItem = document.createElement("span");
     spanItem.classList.add("list-item");
     spanItem.textContent = item;
+    spanItem.setAttribute("data-type", type);
+    spanItem.addEventListener("click", addTag);
     container.appendChild(spanItem);
+  });
+}
+
+function displayTags(list) {
+  if (list.length === 0) {
+    return;
+  }
+  tagsContainer.innerHTML = "";
+  list.forEach((item) => {
+    let tag = tagFactory(item.content, item.type).createTag();
+    tagsContainer.appendChild(tag);
   });
 }

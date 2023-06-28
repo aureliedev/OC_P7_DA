@@ -1,4 +1,10 @@
-//let currentSearch = [];
+let currentSearch = [];
+let currentIngredientsList = [];
+let currentAppliancesList = [];
+let currentUstensilsList = [];
+let tagsList = [];
+
+/******** SEARCH SIMPLE *******/
 
 function filterList(e) {
   let inputName = e.target.getAttribute("data-input");
@@ -22,44 +28,80 @@ function filterList(e) {
 
     console.log("filteredRecipesList", filteredRecipesList);
 
-    noRecipesMessage.style.display =
+    errorMessageRecipes.style.display =
       filteredRecipesList.length === 0 ? "block" : "none";
 
     currentSearch = filteredRecipesList;
 
     createRecipesList(filteredRecipesList);
     displayListItems(
-      getAllIngredientsFromRecipesList(filteredRecipesList),
+      getAllIngredientsFromRecipesList(currentSearch),
       "ingredients"
     );
+    currentIngredientsList = getAllIngredientsFromRecipesList(currentSearch);
     displayListItems(
-      getAllAppliancesFromRecipesList(filteredRecipesList),
+      getAllAppliancesFromRecipesList(currentSearch),
       "appliances"
     );
+    currentAppliancesList = getAllAppliancesFromRecipesList(currentSearch);
     displayListItems(
-      getAllUstensilsFromRecipesList(filteredRecipesList),
+      getAllUstensilsFromRecipesList(currentSearch),
       "ustensils"
     );
+    currentUstensilsList = getAllUstensilsFromRecipesList(currentSearch);
   } else if (inputName === "ingredients") {
-    const listToFilter = getAllIngredientsFromRecipesList(currentSearch);
-    const filteredList = listToFilter.filter((item) => {
+    const filteredList = currentIngredientsList.filter((item) => {
       return item.toLowerCase().includes(searchedString);
     });
 
     displayListItems(filteredList, "ingredients");
   } else if (inputName === "appliances") {
-    const listToFilter = getAllAppliancesFromRecipesList(currentSearch);
-    const filteredList = listToFilter.filter((item) => {
+    const filteredList = currentAppliancesList.filter((item) => {
       return item.toLowerCase().includes(searchedString);
     });
     displayListItems(filteredList, "appliances");
   } else if (inputName === "ustensils") {
-    const listToFilter = getAllUstensilsFromRecipesList(currentSearch);
-    const filteredList = listToFilter.filter((item) => {
+    const filteredList = currentUstensilsList.filter((item) => {
       return item.toLowerCase().includes(searchedString);
     });
     console.log("filteredList:", filteredList);
 
-    displayListItems(filteredList, "ustensils");
+    displayListItems(filteredList, "filteredList");
   }
+}
+
+/********** SEARCH TAG **********/
+
+function addTag(e) {
+  const content = e.target.textContent;
+  const type = e.target.getAttribute("data-type");
+  const newTag = {
+    content,
+    type,
+  };
+  tagsList.push(newTag);
+  displayTags(tagsList);
+
+  let filteredList;
+  let listOfItemsToFilter;
+
+  switch (type) {
+    case "ingredients":
+      listOfItemsToFilter = currentIngredientsList;
+      filteredList = listOfItemsToFilter.filter((item) => item != content);
+      currentIngredientsList = filteredList;
+      break;
+    case "appliances":
+      listOfItemsToFilter = currentAppliancesList;
+      filteredList = listOfItemsToFilter.filter((item) => item != content);
+      currentAppliancesList = filteredList;
+      break;
+    case "ustensils":
+      listOfItemsToFilter = currentUstensilsList;
+      filteredList = listOfItemsToFilter.filter((item) => item != content);
+      currentUstensilsList = filteredList;
+      break;
+  }
+  displayListItems(filteredList, type);
+  console.log(listOfItemsToFilter, "listOfItemsToFilter");
 }

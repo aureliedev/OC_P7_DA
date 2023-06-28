@@ -283,12 +283,12 @@ h1.header-heading {
   transform: rotate(180deg);
 }
 
-.item {
+.list-item {
   margin-bottom: 5px;
   cursor: pointer;
 }
 
-.item:hover {
+.list-item:hover {
   text-decoration: underline;
 }
 
@@ -306,5 +306,40 @@ h1.header-heading {
   .advanced-search-tags-container {
     position: relative;
     top: 0px;
+  }
+}
+
+/*********** TAG ***********/
+#tags-container {
+  width: 90%;
+  max-width: 1150px;
+  margin: 25px auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag {
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: white;
+}
+
+.tag-button {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  font-size: 15px;
+  margin-left: 5px;
+  border-radius: 50px;
+  border: 2px solid white;
+  color: white;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  #tags-container {
+    justify-content: center;
   }
 }
