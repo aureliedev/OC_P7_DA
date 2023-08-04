@@ -1,4 +1,5 @@
 function createRecipesList(array) {
+  recipeCardsContainer.innerHTML = "";
   array.forEach((element) => {
     const recipeCard = recipeFactory(element).createRecipeCard();
     recipeCardsContainer.appendChild(recipeCard);
@@ -10,6 +11,17 @@ function getIngredientsFromRecipe(recipe) {
     item.ingredient.toLowerCase()
   );
   return ingredients.toString();
+}
+
+function getAllItemsFromRecipe(recipe) {
+  const items = [];
+  recipe.ingredients.forEach((item) =>
+    items.push(item.ingredient.toLowerCase())
+  );
+  recipe.ustensils.forEach((item) => items.push(item.toLowerCase()));
+  items.push(recipe.appliance.toLowerCase());
+  const sortedItems = items.sort((a, b) => a.localeCompare(b));
+  return sortedItems;
 }
 
 function getAllIngredientsFromRecipesList(recipesList) {
@@ -106,4 +118,18 @@ function displayTags(list) {
     let tag = tagFactory(item.content, item.type).createTag();
     tagsContainer.appendChild(tag);
   });
+}
+
+function getAllItemsFromTagsList(list) {
+  const items = [];
+  list.forEach((item) => items.push(item.content.toLowerCase()));
+  const sortedItems = items.sort((a, b) => a.localeCompare(b));
+  return sortedItems;
+}
+function toggleField(title, input, container, chevron) {
+  title.classList.toggle("field-closed");
+  input.classList.toggle("field-closed");
+  input.focus();
+  container.classList.toggle("field-closed");
+  chevron.classList.toggle("field-opened");
 }

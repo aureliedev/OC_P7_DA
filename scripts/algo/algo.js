@@ -13,6 +13,8 @@ function filterList(e) {
   console.log("searchedString:", searchedString);
 
   if (inputName === "search") {
+    tagsList = [];
+    tagsContainer.innerHTML = "";
     if (searchedString.length < 3 && searchedString.length !== 0) {
       return;
     }
@@ -53,7 +55,6 @@ function filterList(e) {
     const filteredList = currentIngredientsList.filter((item) => {
       return item.toLowerCase().includes(searchedString);
     });
-
     displayListItems(filteredList, "ingredients");
   } else if (inputName === "appliances") {
     const filteredList = currentAppliancesList.filter((item) => {
@@ -64,15 +65,26 @@ function filterList(e) {
     const filteredList = currentUstensilsList.filter((item) => {
       return item.toLowerCase().includes(searchedString);
     });
+    displayListItems(filteredList, "ustensils");
     console.log("filteredList:", filteredList);
-
-    displayListItems(filteredList, "filteredList");
   }
 }
 
 /********** SEARCH TAG **********/
 
 function addTag(e) {
+  const title = e.target.parentNode.parentNode.querySelector(
+    ".advanced-search-title"
+  );
+  const input = e.target.parentNode.parentNode.querySelector(
+    ".advanced-search-input"
+  );
+  const container = e.target.parentNode.parentNode.querySelector(
+    ".advanced-search-tags-container"
+  );
+  const chevron = e.target.parentNode.parentNode.querySelector(".chevron");
+  toggleField(title, input, container, chevron);
+  input.value = "";
   const content = e.target.textContent;
   const type = e.target.getAttribute("data-type");
   const newTag = {
@@ -81,6 +93,8 @@ function addTag(e) {
   };
   tagsList.push(newTag);
   displayTags(tagsList);
+
+  filterWithTags(currentSearch);
 
   let filteredList;
   let listOfItemsToFilter;
@@ -115,6 +129,7 @@ function deleteTag(e) {
 
   tagsList = newTagsList;
   displayTags(tagsList);
+  filterWithTags(currentSearch);
 
   switch (type) {
     case "ingredients":
@@ -136,7 +151,24 @@ function deleteTag(e) {
       const currentUstensilsListSorted = currentUstensilsList.sort((a, b) =>
         a.localeCompare(b)
       );
-      displayListItems(currentUstensilsList, "ustensils");
+      displayListItems(currentUstensilsListSorted, "ustensils");
       break;
   }
+}
+
+function filterWithTags(recipesList) {
+  const filteredRecipesList = recipesList.filter((recipe) => {
+    const items = getAllItemsFromRecipe(recipe);
+    console.log("Items from recipe:", items); // Debugging line
+    const tagElements = getAllItemsFromTagsList(tagsList);
+    console.log("Items from tags:", tagElements); // Debugging line
+    const containsAll = tagElements.every((element) => items.includes(element));
+    console.log("Contains all tags:", containsAll); // Debugging line
+    if (containsAll) {
+      return recipe;
+    }
+  });
+  errorMessageRecipes.style.display =
+    filteredRecipesList.length === 0 ? "block" : "none";
+  createRecipesList(filteredRecipesList);
 }
